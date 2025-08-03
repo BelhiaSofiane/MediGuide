@@ -38,6 +38,8 @@ const Layout = ({ children }) => {
             </header>
 
             <main className="">
+
+
                 {/* Hero Section */}
                 <section className='container mx-auto px-4 py-16 text-center'>
                     <p className='inline-block rounded px-2.5 py-0.5 text-sm font-medium bg-gray-100 text-gray-800 mb-4'>
@@ -70,6 +72,10 @@ const Layout = ({ children }) => {
                         Start Your Health Journey
                     </button>
                 </section>
+
+
+
+
                 {/* Features */}
                 <section id='features' className='py-16 bg-gray-50'>
                     <div className='container mx-auto px-4'>
@@ -83,7 +89,7 @@ const Layout = ({ children }) => {
                             <div className="rounded-lg border-0 shadow-lg p-6 bg-white">
                                 <div className="mb-4">
                                     <svg className="w-12 h-12 text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <Brain/>
+                                        <Brain />
                                     </svg>
                                     <h3 className="text-lg font-semibold">AI Symptom Analysis</h3>
                                     <p className="text-gray-600 mt-2">
@@ -107,7 +113,7 @@ const Layout = ({ children }) => {
                             <div className="rounded-lg border-0 shadow-lg p-6 bg-white">
                                 <div className="mb-4">
                                     <svg className="w-12 h-12 text-purple-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <TrendingUp/>
+                                        <TrendingUp />
                                     </svg>
                                     <h3 className="text-lg font-semibold">Health Trends</h3>
                                     <p className="text-gray-600 mt-2">
@@ -119,7 +125,7 @@ const Layout = ({ children }) => {
                             <div className="rounded-lg border-0 shadow-lg p-6 bg-white">
                                 <div className="mb-4">
                                     <svg className="w-12 h-12 text-orange-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <Clock/>
+                                        <Clock />
                                     </svg>
                                     <h3 className="text-lg font-semibold">24/7 Availability</h3>
                                     <p className="text-gray-600 mt-2">
@@ -131,7 +137,7 @@ const Layout = ({ children }) => {
                             <div className="rounded-lg border-0 shadow-lg p-6 bg-white">
                                 <div className="mb-4">
                                     <svg className="w-12 h-12 text-red-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <Users/>
+                                        <Users />
                                     </svg>
                                     <h3 className="text-lg font-semibold">Care Continuity</h3>
                                     <p className="text-gray-600 mt-2">
@@ -143,7 +149,7 @@ const Layout = ({ children }) => {
                             <div className="rounded-lg border-0 shadow-lg p-6 bg-white">
                                 <div className="mb-4">
                                     <svg className="w-12 h-12 text-yellow-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <Star/>
+                                        <Star />
                                     </svg>
                                     <h3 className="text-lg font-semibold">Personalized Advice</h3>
                                     <p className="text-gray-600 mt-2">
@@ -155,7 +161,56 @@ const Layout = ({ children }) => {
 
                     </div>
                 </section>
+
+                {/* How It Works */}
+                <section id="how-it-works" className="py-16">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How SymptoTrack Works</h2>
+                            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                                Simple, secure, and scientifically-backed health analysis in three easy steps.
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-8">
+                            <div className="text-center">
+                                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span className="text-2xl font-bold text-blue-600">1</span>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">Describe Your Symptoms</h3>
+                                <p className="text-gray-600">
+                                    Tell us about your symptoms using our intuitive interface. Our AI understands natural language and
+                                    medical terminology.
+                                </p>
+                            </div>
+
+                            <div className="text-center">
+                                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span className="text-2xl font-bold text-green-600">2</span>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">Get AI Analysis</h3>
+                                <p className="text-gray-600">
+                                    Our advanced AI analyzes your symptoms against medical databases to identify possible conditions and
+                                    recommendations.
+                                </p>
+                            </div>
+
+                            <div className="text-center">
+                                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span className="text-2xl font-bold text-purple-600">3</span>
+                                </div>
+                                <h3 className="text-xl font-semibold mb-3">Track & Act</h3>
+                                <p className="text-gray-600">
+                                    Save your results, track patterns over time, and share insights with healthcare providers for better
+                                    care.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </main>
+
+
             <footer className="bg-gray-900 text-center text-sm text-gray-600 py-4">
 
                 <div className="flex gap-3 justify-around mt-2 mb-4 flex-col sm:flex-row">
