@@ -1,4 +1,3 @@
-import React from 'react'
 import { Brain, Clock, Shield, Star, TrendingUp, Users } from 'lucide-react'
 
 const Home = ({ children }) => {
