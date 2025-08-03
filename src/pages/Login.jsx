@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"
 import { Brain, Mail, Lock, Eye, EyeOff } from "lucide-react"
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
+import { Facebook, Google } from "@mui/icons-material";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -134,9 +137,7 @@ const Login = () => {
               type="button"
               className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2.5 rounded-md text-sm hover:bg-gray-50"
             >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92..." />
-              </svg>
+              <GoogleIcon />
               Continue with Google
             </button>
 
@@ -144,9 +145,7 @@ const Login = () => {
               type="button"
               className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2.5 rounded-md text-sm hover:bg-gray-50"
             >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s..." />
-              </svg>
+              <Facebook />
               Continue with Facebook
             </button>
 
