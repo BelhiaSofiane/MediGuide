@@ -1,4 +1,6 @@
+import React from 'react'
 import { Brain, Clock, Shield, Star, TrendingUp, Users } from 'lucide-react'
+import { Link } from "react-router-dom"
 
 const Home = ({ children }) => {
     return (
@@ -26,12 +28,12 @@ const Home = ({ children }) => {
                         </a>
                     </nav>
                     <div className="flex gap-3 justify-end">
-                        <button className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
+                        <Link to={"/login"} className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
                             Sign In
-                        </button>
-                        <button className="bg-black inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-black/80 transition-colors">
+                        </Link>
+                        <Link to={"/register"} className="bg-black inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-black/80 transition-colors">
                             Get Started
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </header>
