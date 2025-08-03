@@ -1,7 +1,7 @@
 import React from 'react'
 import { Brain, Clock, Shield, Star, TrendingUp, Users } from 'lucide-react'
 
-const Layout = ({ children }) => {
+const Home = ({ children }) => {
     return (
         <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
             {/* Header / Navbar */}
@@ -62,9 +62,6 @@ const Layout = ({ children }) => {
                     <img className='rounded-lg shadow-2xl' src="../src/assets/placeholder.svg" alt="idk yet" />
                 </section>
             
-
-
-
 
                 {/* Features */}
                 <section id='features' className='py-16 bg-gray-50'>
@@ -351,4 +348,4 @@ const Layout = ({ children }) => {
     )
 }
 
-export default Layout
+export default Home
