@@ -57,7 +57,7 @@ const Home = ({ children }) => {
                         continuity of care.
                     </p>
                     <div className='flex flex-col sm:flex-row justify-center items-center gap-4 m-4'>
-                        <button className='bg-black hover:bg-black/80 text-black text-white py-2 px-3 rounded-lg font-semibold cursor-pointer w-100'>Start Symptom Check</button>
+                        <Link to={'/SymptomChecker'} className='bg-black hover:bg-black/80 text-black text-white py-2 px-3 rounded-lg font-semibold cursor-pointer w-100'>Start Symptom Check</Link >
                         <button className='bg-white hover:bg-gray-200 py-2 px-3 rounded-lg font-semibold cursor-pointer w-100'>View Demo</button>
                     </div>
                     <img className='rounded-lg shadow-2xl' src="../src/assets/placeholder.svg" alt="idk yet" />
