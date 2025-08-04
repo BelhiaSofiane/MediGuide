@@ -147,8 +147,11 @@ export default function SymptomChecker() {
             </button>
           </div>
         )}
-
         {/* Step 2, Step 3, Step 4 continue in the same way */}
+        {step === 2 && (<>Hello world</>)}
+        {step === 3 && (<>Hello world</>)}
+        {step === 4 && (<>Hello world</>)}
+        
       </div>
     </div>
   )
