@@ -10,7 +10,7 @@
 ## Table of Contents
 1. [Description](#description)  
 2. [Features](#features)  
-3. [ / Screenshots](#demo--screenshots)  
+3. [Demo / Screenshots](#demo--screenshots)  
 4. [Installation & Setup](#installation--setup)  
 5. [Usage](#usage)  
 6. [File Structure & Modules](#file-structure--modules)  
