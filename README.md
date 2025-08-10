@@ -1,6 +1,5 @@
 # THIS READMEFILE IS A TEMPLATE I USE AND THE PROJECT IS STILL UNFINISHED .
 
-
 # MediGuide 🩺
 
 **MediGuide** is a medical app designed to help users **seek medical assistance**, **receive advice**, and securely **store medical history** all in a single place.
