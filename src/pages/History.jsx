@@ -2,7 +2,7 @@
 
 import React from "react"
 import { Brain, Calendar, Search, Filter, Clock, TrendingUp, Download, Share } from "lucide-react"
-import { Link } from "react-router-dom" // if you're using React Router (swap if using Next.js)
+import { Link } from "react-router-dom"
 
 const historyData = [
   {
