@@ -28,13 +28,13 @@ export default function Dashboard() {
           <div className="flex items-center gap-3">
             <a
               href="/symptom-checker"
-              className="px-4 py-2 text-sm rounded-lg hover:bg-gray-100 text-gray-700"
+              className="bg-white hover:bg-gray-200 py-2 px-3 rounded-lg font-semibold cursor-pointer"
             >
               Symptom Checker
             </a>
             <a
               href="/history"
-              className="px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-700"
+              className="bg-black hover:bg-black/80 text-black text-white py-2 px-3 rounded-lg font-semibold cursor-pointer"
             >
               History
             </a>

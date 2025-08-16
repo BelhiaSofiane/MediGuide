@@ -72,13 +72,13 @@ export default function History() {
           <div className="flex items-center gap-3">
             <Link
               to="/symptom-checker"
-              className="px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100"
+              className="bg-white hover:bg-gray-200 py-2 px-3 rounded-lg font-semibold cursor-pointer"
             >
               Symptom Checker
             </Link>
             <Link
               to="/dashboard"
-              className="px-3 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100"
+              className="bg-black hover:bg-black/80 text-black text-white py-2 px-3 rounded-lg font-semibold cursor-pointer"
             >
               Dashboard
             </Link>
@@ -188,20 +188,22 @@ export default function History() {
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{entry.primarySymptom}</h3>
                     <span
-                      className={`px-2 py-1 text-xs font-medium rounded ${entry.severity === "Mild"
+                      className={`px-2 py-1 text-xs font-medium rounded ${
+                        entry.severity === "Mild"
                           ? "bg-gray-200 text-gray-800"
                           : entry.severity === "Moderate"
-                            ? "bg-blue-100 text-blue-800"
-                            : "bg-red-100 text-red-800"
-                        }`}
+                          ? "bg-blue-100 text-blue-800"
+                          : "bg-red-100 text-red-800"
+                      }`}
                     >
                       {entry.severity}
                     </span>
                     <span
-                      className={`px-2 py-1 text-xs font-medium rounded ${entry.status === "Resolved"
+                      className={`px-2 py-1 text-xs font-medium rounded ${
+                        entry.status === "Resolved"
                           ? "bg-green-100 text-green-800"
                           : "bg-yellow-100 text-yellow-800"
-                        }`}
+                      }`}
                     >
                       {entry.status}
                     </span>
