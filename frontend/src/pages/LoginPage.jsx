@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
 
-export default function LoginPage({ onLogin }) {
+export default function LoginPage({ onSignIn, onSignUp, authError }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSignUpMode, setIsSignUpMode] = useState(false);
+  const [localError, setLocalError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onLogin({
-      id: 1,
-      name: 'John Doe',
-      email: email
-    });
+    setLocalError('');
+    setIsSubmitting(true);
+    try {
+      if (isSignUpMode) {
+        await onSignUp({ email, password });
+      } else {
+        await onSignIn({ email, password });
+      }
+    } catch (error) {
+      setLocalError(error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -20,8 +31,8 @@ export default function LoginPage({ onLogin }) {
           <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
             <i className="fas fa-stethoscope text-white text-2xl"></i>
           </div>
-          <h1 className="text-3xl font-bold text-gray-800">MedCheck AI</h1>
-          <p className="text-gray-600 mt-2">AI-Powered Symptom Checker</p>
+          <h1 className="text-3xl font-bold text-gray-800">MediGuide</h1>
+          <p className="text-gray-600 mt-2">Sign in to access your secure health history</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -51,16 +62,27 @@ export default function LoginPage({ onLogin }) {
 
           <button
             type="submit"
+            disabled={isSubmitting}
             className="w-full bg-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition duration-200"
           >
-            Sign In
+            {isSubmitting ? 'Please wait...' : isSignUpMode ? 'Create Account' : 'Sign In'}
           </button>
         </form>
 
+        {(localError || authError) && (
+          <p className="text-red-600 text-sm mt-4 text-center">{localError || authError}</p>
+        )}
+
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <span className="text-primary font-medium cursor-pointer">Sign up</span>
+            {isSignUpMode ? 'Already have an account?' : "Don't have an account?"}{' '}
+            <button
+              type="button"
+              className="text-primary font-medium cursor-pointer"
+              onClick={() => setIsSignUpMode((prev) => !prev)}
+            >
+              {isSignUpMode ? 'Sign in' : 'Sign up'}
+            </button>
           </p>
         </div>
       </div>

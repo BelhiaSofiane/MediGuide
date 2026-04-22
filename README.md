@@ -57,3 +57,16 @@ git clone https://github.com/BelhiaSofianeCS50/MediGuide.git
 cd MediGuide
 npm install
 npm run dev
+```
+
+## Supabase Setup
+
+1. Create a Supabase project.
+2. Open Supabase SQL Editor and run the schema file:
+   - `supabase/schema.sql`
+3. Create `frontend/.env` from `frontend/.env.example`:
+
+```bash
+VITE_SUPABASE_URL=your-project-url
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```

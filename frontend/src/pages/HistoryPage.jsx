@@ -1,4 +1,6 @@
 export default function HistoryPage({ user, checkupHistory, onBack }) {
+    const userLabel = user.user_metadata?.full_name || user.email || 'User';
+
     return (
         <div className="min-h-screen">
             <header className="bg-white shadow-sm">
@@ -16,7 +18,7 @@ export default function HistoryPage({ user, checkupHistory, onBack }) {
                         <h1 className="text-xl font-bold text-gray-800">Checkup History</h1>
                     </div>
                     <div className="flex items-center space-x-4">
-                        <span className="text-gray-700">Hello, {user.name}</span>
+                        <span className="text-gray-700">Hello, {userLabel}</span>
                     </div>
                 </div>
             </header>

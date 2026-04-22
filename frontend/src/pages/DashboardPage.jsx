@@ -5,6 +5,8 @@ export default function DashboardPage({ user, onLogout, onAddCheckup, onViewHist
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [results, setResults] = useState(null);
+  const [analysisError, setAnalysisError] = useState('');
+  const userLabel = user.user_metadata?.full_name || user.email || 'User';
 
   const symptomSuggestions = [
     'Headache', 'Fever', 'Cough', 'Sore Throat', 'Runny Nose',
@@ -25,9 +27,10 @@ export default function DashboardPage({ user, onLogout, onAddCheckup, onViewHist
   const analyzeSymptoms = () => {
     if (selectedSymptoms.length === 0) return;
 
+    setAnalysisError('');
     setIsAnalyzing(true);
 
-    setTimeout(() => {
+    setTimeout(async () => {
       const possibleConditions = [
         'Common Cold', 'Seasonal Allergies', 'Influenza (Flu)',
         'Migraine', 'Strep Throat', 'COVID-19', 'Sinusitis'
@@ -35,20 +38,28 @@ export default function DashboardPage({ user, onLogout, onAddCheckup, onViewHist
 
       const severity = selectedSymptoms.length > 3 ? 'Moderate' : 'Mild';
 
-      setResults({
-        conditions: possibleConditions,
-        severity: severity,
-        recommendation: severity === 'Mild'
-          ? 'Rest and hydrate. Consider over-the-counter medication.'
-          : 'Please consult with a healthcare professional for proper diagnosis.'
-      });
+      const recommendation = severity === 'Mild'
+        ? 'Rest and hydrate. Consider over-the-counter medication.'
+        : 'Please consult with a healthcare professional for proper diagnosis.';
 
-      onAddCheckup({
-        symptoms: [...selectedSymptoms],
-        possibleConditions: possibleConditions
-      });
+      try {
+        setResults({
+          conditions: possibleConditions,
+          severity,
+          recommendation,
+        });
 
-      setIsAnalyzing(false);
+        await onAddCheckup({
+          symptoms: [...selectedSymptoms],
+          possibleConditions,
+          severity,
+          recommendation,
+        });
+      } catch (error) {
+        setAnalysisError(error.message);
+      } finally {
+        setIsAnalyzing(false);
+      }
     }, 2000);
   };
 
@@ -69,7 +80,7 @@ export default function DashboardPage({ user, onLogout, onAddCheckup, onViewHist
           </div>
 
           <div className="flex items-center space-x-4">
-            <span className="text-gray-700">Hello, {user.name}</span>
+            <span className="text-gray-700">Hello, {userLabel}</span>
             <button
               onClick={onLogout}
               className="text-gray-500 hover:text-gray-700"
@@ -169,6 +180,7 @@ export default function DashboardPage({ user, onLogout, onAddCheckup, onViewHist
                   >
                     Start New Check
                   </button>
+                  {analysisError && <p className="text-sm text-red-600">{analysisError}</p>}
                 </div>
               )}
             </div>
