@@ -42,7 +42,7 @@ This project was developed during the CS50 Web Dev module and reflects a functio
 ##  Demo / Screenshots
 https://symptotrack.netlify.app/
 
-> *Example screenshot section:*
+> *screenshot section:*
 > - **Homepage** with login/sign‑up options  
 > - **Dashboard** displaying medical records  
 > - **Add Record** form  
