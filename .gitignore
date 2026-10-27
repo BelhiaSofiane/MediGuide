@@ -1,6 +1,13 @@
 #env
 
-.env
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.p12
+*.pfx
+*.key
+**/credentials.json
 
 # Logs
 logs

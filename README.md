@@ -1,72 +1,38 @@
-# WORK IN PROGRESS ...
+# MediGuide
 
-# MediGuide 🩺
+MediGuide is a React/Vite demonstration app for signing in and saving a private symptom log. Its checkup screen is a **simulation**: it does not diagnose conditions, assess severity, use AI or medical databases, or provide treatment advice. Older records created by previous versions remain labeled as legacy records of unverified origin.
 
-**MediGuide** is a medical app designed to help users **seek medical assistance**, **receive advice**, and securely **store medical history** all in a single place.
-
----
-
-## Table of Contents
-1. [Description](#description)  
-2. [Features](#features)  
-3. [Demo / Screenshots](#demo--screenshots)  
-4. [Installation & Setup](#installation--setup)  
-5. [Usage](#usage)  
-6. [File Structure & Modules](#file-structure--modules)  
-7. [Technologies](#technologies)  
-8. [How It Works](#how-it-works)  
-9. [Future Enhancements](#future-enhancements)  
-10. [Contributing](#contributing)  
-11. [License](#license)
-
----
-
-## Description
-MediGuide helps people navigate medical care by offering:
-- A centralized dashboard of medical records.
-- Advice and medical recommendations.
-- Emergency contact features for quick access to help.
-
-This project was developed during the CS50 Web Dev module and reflects a functional, user-centered medical utility.
-
----
-
-## Features
-- ✅ User authentication (sign‑up / login)  
-- 📁 Record management: add, view, edit, delete medical history  
-- 🆘 Emergency contacts & medical alert prompts  
-- 📱 Responsive design for mobile and desktop
-
----
-
-##  Demo / Screenshots
-https://symptotrack.netlify.app/
-
-> *screenshot section:*
-> - **Homepage** with login/sign‑up options  
-> - **Dashboard** displaying medical records  
-> - **Add Record** form  
-> - **Emergency Contact** setup page
-
----
-
-## Installation & Setup
+## Run locally
 
 ```bash
-git clone https://github.com/BelhiaSofianeCS50/MediGuide.git
-cd MediGuide
-npm install
+cd frontend
+npm ci
+```
+
+Create `frontend/.env` using `frontend/.env.example` as the template. Set `VITE_SUPABASE_URL` to your project URL and `VITE_SUPABASE_ANON_KEY` to its **publishable** key (a legacy `anon` key also works). Never use a Supabase secret or `service_role` key in a `VITE_` variable. Vite puts those values in the browser bundle. The `NEXT_PUBLIC_*` variables from other frameworks are unused here.
+
+```bash
 npm run dev
 ```
 
-## Supabase Setup
+Vite reads `.env` when it starts; restart the server after changing it. Run commands from `frontend`, not the repository root.
 
-1. Create a Supabase project.
-2. Open Supabase SQL Editor and run the schema file:
-   - `supabase/schema.sql`
-3. Create `frontend/.env` from `frontend/.env.example`:
+## Database setup
+
+In a new Supabase project, run `supabase/schema.sql`, then `supabase/migrations/001_demo_constraints.sql` in the SQL Editor. For an existing project that already has the original table, run only the migration. Deploy the schema change before deploying the updated frontend, because the frontend writes and reads the new `is_simulated` column. Existing rows receive `false` and remain labeled as legacy records.
+
+The schema enables row level security and policies requiring `auth.uid() = user_id` for reads and writes. Verify the policies in the hosted project before accepting real user data. The project currently holds test data only. Health records are sensitive even in a demo.
+
+## Checks
 
 ```bash
-VITE_SUPABASE_URL=your-project-url
-VITE_SUPABASE_ANON_KEY=your-anon-key
+cd frontend
+npm test
+npm run lint
+npm run build
+npm audit
 ```
+
+The production build requires the two public Supabase variables and rejects unexpected `VITE_` variables or a privileged Supabase key before bundling. Keep server credentials outside the frontend and its build environment.
+
+MediGuide currently supports signup, login, logout, saving demo checkups, and paginated history viewing. Record editing, deletion, emergency contacts, and medical assessment are not implemented.

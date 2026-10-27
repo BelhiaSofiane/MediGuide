@@ -32,15 +32,6 @@ export async function signOut() {
   }
 }
 
-export async function getSession() {
-  assertSupabase();
-  const { data, error } = await supabase.auth.getSession();
-  if (error) {
-    throw error;
-  }
-  return data.session;
-}
-
 export function onAuthStateChange(callback) {
   assertSupabase();
   return supabase.auth.onAuthStateChange(callback);

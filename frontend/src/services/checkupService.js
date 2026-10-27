@@ -6,19 +6,23 @@ function assertSupabase() {
   }
 }
 
-export async function fetchCheckups(userId) {
+const CHECKUP_COLUMNS = 'id,user_id,symptoms,possible_conditions,severity,recommendation,is_simulated,created_at';
+
+export async function fetchCheckups(userId, { offset = 0, limit = 20 } = {}) {
   assertSupabase();
-  const { data, error } = await supabase
+  const { data, count, error } = await supabase
     .from('checkups')
-    .select('*')
+    .select(CHECKUP_COLUMNS, { count: 'exact' })
     .eq('user_id', userId)
-    .order('created_at', { ascending: false });
+    .order('created_at', { ascending: false })
+    .order('id', { ascending: false })
+    .range(offset, offset + limit - 1);
 
   if (error) {
     throw error;
   }
 
-  return data;
+  return { checkups: data, count };
 }
 
 export async function createCheckup(payload) {
@@ -26,7 +30,7 @@ export async function createCheckup(payload) {
   const { data, error } = await supabase
     .from('checkups')
     .insert(payload)
-    .select('*')
+    .select(CHECKUP_COLUMNS)
     .single();
 
   if (error) {

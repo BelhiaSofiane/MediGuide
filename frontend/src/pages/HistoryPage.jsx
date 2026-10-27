@@ -1,4 +1,4 @@
-export default function HistoryPage({ user, checkupHistory, onBack }) {
+export default function HistoryPage({ user, checkupHistory, historyCount, historyStatus, historyError, onLoadMore, onRetry, onBack }) {
     const userLabel = user.user_metadata?.full_name || user.email || 'User';
 
     return (
@@ -26,21 +26,24 @@ export default function HistoryPage({ user, checkupHistory, onBack }) {
             <main className="container mx-auto px-4 py-8">
                 <div className="bg-white rounded-xl shadow-md p-6">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">Your Symptom Check History</h2>
-                    {checkupHistory.length === 0 ? (
+                    {historyStatus === 'loading' && <p role="status">Loading history...</p>}
+                    {historyError && <p role="alert" className="text-red-700 mb-4">{historyError}</p>}
+                    {historyStatus === 'error' && <button onClick={onRetry} className="text-primary font-medium mb-4">Retry loading history</button>}
+                    {historyStatus !== 'loading' && historyStatus !== 'error' && checkupHistory.length === 0 ? (
                         <div className="text-center py-12">
                             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <i className="fas fa-history text-gray-400 text-2xl"></i>
                             </div>
                             <h3 className="text-xl font-bold text-gray-600 mb-2">No checkup history yet</h3>
-                            <p className="text-gray-500">Your symptom analyses will appear here after you complete your first check.</p>
+                            <p className="text-gray-500">Your demo checkups will appear here after you save one.</p>
                         </div>
-                    ) : (
+                    ) : checkupHistory.length > 0 && (
                         <div className="space-y-6">
                             {checkupHistory.map((checkup) => (
                                 <div key={checkup.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition duration-200">
                                     <div className="flex justify-between items-start mb-3">
                                         <h3 className="font-medium text-gray-800">Checkup on {checkup.date}</h3>
-                                        <span className="text-sm text-gray-500">#{checkup.id}</span>
+                                        <span className="text-sm text-gray-500">{checkup.isSimulated ? 'Demo record' : 'Legacy record — origin unverified'}</span>
                                     </div>
                                     <div className="mb-3">
                                         <h4 className="text-sm font-medium text-gray-700 mb-1">Symptoms reported:</h4>
@@ -55,16 +58,23 @@ export default function HistoryPage({ user, checkupHistory, onBack }) {
                                             ))}
                                         </div>
                                     </div>
-                                    <div>
+                                    {!checkup.isSimulated && <div>
                                         <h4 className="text-sm font-medium text-gray-700 mb-1">Possible conditions:</h4>
                                         <ul className="list-disc list-inside text-sm text-gray-600 pl-2">
                                             {checkup.possibleConditions.map((condition, index) => (
                                                 <li key={index}>{condition}</li>
                                             ))}
                                         </ul>
-                                    </div>
+                                        <p className="text-sm text-gray-600 mt-2">Previous result: {checkup.severity}. {checkup.recommendation}</p>
+                                        <p className="text-sm text-yellow-800 mt-2">This older result has not been verified and is not medical advice.</p>
+                                    </div>}
                                 </div>
                             ))}
+                            {checkupHistory.length < historyCount && (
+                                <button onClick={onLoadMore} disabled={historyStatus === 'loadingMore'} className="text-primary font-medium">
+                                    {historyStatus === 'loadingMore' ? 'Loading more...' : 'Load more history'}
+                                </button>
+                            )}
                         </div>
                     )}
                 </div>

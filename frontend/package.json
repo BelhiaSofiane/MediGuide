@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "test": "node --test",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -23,8 +24,6 @@
     "lucide-react": "^0.536.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router": "^7.7.1",
-    "react-router-dom": "^7.7.1",
     "recharts": "^3.1.2",
     "tailwindcss": "^4.1.11"
   },
